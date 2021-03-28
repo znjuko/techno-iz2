@@ -19,20 +19,20 @@ Storage *create_storage(size_t size) {
 }
 
 void fill_storage(Storage *storage, int (*read_number)(File *file_reader), File *file_reader) {
-    for(size_t i = 0 ; i < storage->size; ++i) {
+    for (size_t i = 0; i < storage->size; ++i) {
         storage->points[i].x = (*read_number)(file_reader);
         storage->points[i].y = (*read_number)(file_reader);
     }
 }
 
-double calculate_storage(Storage* storage, double (*cal)(const Point* a, const Point* b)) {
-    double total = 0 ;
-    for(size_t i = 0 ; i < storage->size - 1; ++i)
-        total += (*cal)(&storage->points[i], &storage->points[i+1]);
+double calculate_storage(Storage *storage, double (*cal)(const Point *a, const Point *b)) {
+    double total = 0;
+    for (size_t i = 0; i < storage->size - 1; ++i)
+        total += (*cal)(&storage->points[i], &storage->points[i + 1]);
     return total;
 }
 
-void delete_storage(Storage** storage) {
+void delete_storage(Storage **storage) {
     free((*storage)->points);
     free(*storage);
     (*storage) = NULL;

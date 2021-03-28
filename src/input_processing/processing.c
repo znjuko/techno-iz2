@@ -62,7 +62,7 @@ char *get_string() {
 
 size_t *get_size() {
     char c = '\0';
-    size_t* number = (size_t*)calloc(1,sizeof(size_t));
+    size_t *number = (size_t *) calloc(1, sizeof(size_t));
     while (c = get_char(), c != EOF && c != '\n') {
         if (c < '0' || c > '9') {
             char *trash = get_string();

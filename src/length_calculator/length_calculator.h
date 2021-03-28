@@ -4,7 +4,6 @@
 
 #ifndef TECHNO_IZ2_LCALC_H
 #define TECHNO_IZ2_LCALC_H
-#include <math.h>
 
 #include "models.h"
 

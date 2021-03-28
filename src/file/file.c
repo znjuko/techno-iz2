@@ -16,6 +16,10 @@ File *create_file_reader(const char *filename, const char *open_params) {
     return file_reader;
 };
 
+int move_reader(File *file_reader, size_t offset) {
+    return fseek(file_reader->file_iterator, offset, 0);
+};
+
 void destroy_file_reader(File *file_reader) {
     fclose(file_reader->file_iterator);
 }
@@ -30,7 +34,7 @@ int read_number(File *file_reader) {
     return value;
 };
 
-void delete_file(File** file) {
+void delete_file(File **file) {
     fclose((*file)->file_iterator);
     free(*file);
     file = NULL;

@@ -16,6 +16,8 @@ void destroy_file_reader(File *file_reader);
 
 int read_number(File *file_reader);
 
+int move_reader(File *file_reader, size_t offset);
+
 File *create_file_reader(const char *filename, const char *open_params);
 
 #endif //TECHNO_IZ2_FILE_H

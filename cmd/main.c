@@ -5,11 +5,11 @@
 
 #include "menu.h"
 
-const char* open_params = "r";
+const char *open_params = "r";
 
 int main() {
-    int result =start_program(open_params);
-    if(!result) {
+    int result = start_program(open_params);
+    if (!result) {
         printf("error occurred!");
     } else {
         printf("correct execution");
