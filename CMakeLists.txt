@@ -2,6 +2,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.13)
 
 option(test "Build all tests." ON)
 
+option(parallel "Build parallel version" OFF)
+
 project(techno_iz2)
 
 set(CMAKE_CXX_FLAGS         "-Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -Werror -Wpedantic")
@@ -23,3 +25,6 @@ if(test)
     add_subdirectory(tests)
 endif(test)
 
+
+unset(test CACHE)
+unset(parallel CACHE)

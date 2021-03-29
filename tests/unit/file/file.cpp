@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "collector.h"
+#include "file.h"
 }
 
 const char* open_params = "r";

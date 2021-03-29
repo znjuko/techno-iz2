@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "collector.h"
+#include "file.h"
 #include "length_calculator.h"
 #include "models.h"
 #include "storage.h"
