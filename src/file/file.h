@@ -9,13 +9,13 @@
 #include <stdlib.h>
 
 typedef struct {
-  FILE *file_iterator;
+    FILE* file_iterator;
 } File;
 
-void destroy_file_reader(File **file_reader);
+void destroy_file_reader(File** file_reader);
 
-double read_number(File *file_reader);
+double read_number(File* file_reader);
 
-File *create_file_reader(const char *filename, const char *open_params);
+File* create_file_reader(const char* filename, const char* open_params);
 
-#endif  // TECHNO_IZ2_FILE_H
+#endif // TECHNO_IZ2_FILE_H

@@ -4,22 +4,29 @@
 
 #include "collector.h"
 
-Total *collect_size(File *file, size_t size) {
-  Total *total = (Total *)calloc(1, sizeof(Total));
-  if (!total) {
-    return NULL;
-  }
+Total* collect_size(File* file, size_t size)
+{
+    if (!file) {
+        return NULL;
+    }
 
-  Storage *storage = create_storage(size);
-  if (storage == NULL) {
-    return NULL;
-  }
+    Total* total = (Total*)calloc(1, sizeof(Total));
+    if (!total) {
+        return NULL;
+    }
 
-  fill_storage(storage, read_number, file);
+    Storage* storage = create_storage(size);
+    if (storage == NULL) {
+        free(total);
 
-  total->value = calculate_storage(storage, calculate_length);
+        return NULL;
+    }
 
-  delete_storage(&storage);
+    fill_storage(storage, read_number, file);
 
-  return total;
+    total->value = calculate_storage(storage, calculate_length);
+
+    delete_storage(&storage);
+
+    return total;
 };

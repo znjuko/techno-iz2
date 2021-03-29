@@ -7,12 +7,12 @@
 #include <stdbool.h>
 
 typedef struct {
-  double x;
-  double y;
+    double x;
+    double y;
 } Point;
 
 typedef struct {
-  double value;
+    double value;
 } Total;
 
-#endif  // TECHNO_IZ2_MODELS_H
+#endif // TECHNO_IZ2_MODELS_H

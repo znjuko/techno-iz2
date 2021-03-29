@@ -4,6 +4,7 @@ add_subdirectory(length_calculator)
 add_subdirectory(models)
 add_subdirectory(input_processing)
 add_subdirectory(collector)
-add_subdirectory(collector_parallel)
 add_subdirectory(menu)
+add_subdirectory(collector_parallel)
+
 

@@ -1,17 +1,17 @@
-import os
 import sys
+from random import randrange
 
-def main():
-    filename = sys.argv[1]
+filename = sys.argv[1]
+number_count = 4000000
+
+f = open(filename, "w+")
+
+for i in range(number_count):
+    f.write(str(randrange(3000))+"\n")
+
+f.close()
 
 
-    f = open(filename, "w")
-    f.write( str(yEst) )
-    f.close()
-
-
-if __name__ == '__main__':
-    main()
 
 
 

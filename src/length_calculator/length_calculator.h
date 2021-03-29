@@ -9,4 +9,4 @@
 
 double calculate_length(const Point* a, const Point* b);
 
-#endif  // TECHNO_IZ2_LCALC_H
+#endif // TECHNO_IZ2_LCALC_H

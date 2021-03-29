@@ -1,11 +1,11 @@
 file(GLOB SRCS *.cpp)
 
-project(file_test)
+project(collector_async_test)
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRCS})
 
 TARGET_LINK_LIBRARIES(${PROJECT_NAME}
-        file
+        file models data_storage length_calculator collector_parallel input_processing
         gtest
         )
 

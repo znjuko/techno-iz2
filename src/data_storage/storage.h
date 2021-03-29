@@ -12,18 +12,18 @@
 #include "storage.h"
 
 typedef struct {
-  size_t size;
-  Point *points;
+    size_t size;
+    Point* points;
 } Storage;
 
-Storage *create_storage(size_t size);
+Storage* create_storage(size_t size);
 
-void fill_storage(Storage *storage, double (*read_number)(File *file_reader),
-                  File *file_reader);
+void fill_storage(Storage* storage, double (*read_number)(File* file_reader),
+    File* file_reader);
 
-double calculate_storage(Storage *storage,
-                         double (*cal)(const Point *a, const Point *b));
+double calculate_storage(Storage* storage,
+    double (*cal)(const Point* a, const Point* b));
 
-void delete_storage(Storage **storage);
+void delete_storage(Storage** storage);
 
-#endif  // TECHNO_IZ2_DSTORAGE_H
+#endif // TECHNO_IZ2_DSTORAGE_H

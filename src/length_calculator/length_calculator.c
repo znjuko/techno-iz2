@@ -6,10 +6,11 @@
 
 #include <math.h>
 
-double calculate_length(const Point *a, const Point *b) {
-  if (!a || !b) {
-    return 0;
-  }
+double calculate_length(const Point* a, const Point* b)
+{
+    if (!a || !b) {
+        return 0;
+    }
 
-  return sqrt((a->x - b->x) * (a->x - b->x) + (a->y - b->y) * (a->y - b->y));
+    return sqrt((a->x - b->x) * (a->x - b->x) + (a->y - b->y) * (a->y - b->y));
 };
