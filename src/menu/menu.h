@@ -9,8 +9,8 @@
 #include "file.h"
 #include "models.h"
 #include "processing.h"
-#include "file.h"
+#include "storage.h"
 
-int start_program(const char * open_params);
+int start_program(const char* open_params);
 
-#endif //TECHNO_IZ2_MENU_H
+#endif  // TECHNO_IZ2_MENU_H

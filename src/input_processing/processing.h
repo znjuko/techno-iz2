@@ -20,4 +20,4 @@ char *get_string();
 
 size_t *get_size();
 
-#endif //TECHNO_IZ1_PROCESSING_H
+#endif  // TECHNO_IZ1_PROCESSING_H

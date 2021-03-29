@@ -4,14 +4,15 @@
 
 #ifndef TECHNO_IZ2_MODELS_H
 #define TECHNO_IZ2_MODELS_H
+#include <stdbool.h>
 
 typedef struct {
-    int x;
-    int y;
+  double x;
+  double y;
 } Point;
 
 typedef struct {
-    double value;
+  double value;
 } Total;
 
-#endif //TECHNO_IZ2_MODELS_H
+#endif  // TECHNO_IZ2_MODELS_H

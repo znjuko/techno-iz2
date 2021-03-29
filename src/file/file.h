@@ -1,5 +1,5 @@
 //
-// Created by Черных Никита Алекандрович on 3/25/21.
+// Created by paccbet on 28.03.2021.
 //
 
 #ifndef TECHNO_IZ2_FILE_H
@@ -9,15 +9,13 @@
 #include <stdlib.h>
 
 typedef struct {
-    FILE *file_iterator;
+  FILE *file_iterator;
 } File;
 
-void destroy_file_reader(File *file_reader);
+void destroy_file_reader(File **file_reader);
 
-int read_number(File *file_reader);
-
-int move_reader(File *file_reader, size_t offset);
+double read_number(File *file_reader);
 
 File *create_file_reader(const char *filename, const char *open_params);
 
-#endif //TECHNO_IZ2_FILE_H
+#endif  // TECHNO_IZ2_FILE_H

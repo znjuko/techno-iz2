@@ -8,11 +8,11 @@
 const char *open_params = "r";
 
 int main() {
-    int result = start_program(open_params);
-    if (!result) {
-        printf("error occurred!");
-    } else {
-        printf("correct execution");
-    }
-    return 0;
+  int result = start_program(open_params);
+  if (!result) {
+    printf("error occurred!");
+  } else {
+    printf("correct execution");
+  }
+  return 0;
 };

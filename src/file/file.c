@@ -5,37 +5,43 @@
 #include "file.h"
 
 File *create_file_reader(const char *filename, const char *open_params) {
-    FILE *file_iterator = fopen(filename, open_params);
-    if (!file_iterator) {
-        return NULL;
-    }
+  FILE *file_iterator = fopen(filename, open_params);
+  if (!file_iterator) {
+    return NULL;
+  }
 
-    File *file_reader = (File *) calloc(1, sizeof(File));
-    file_reader->file_iterator = file_iterator;
+  File *file_reader = (File *)calloc(1, sizeof(File));
+  if (!file_reader) {
+    return NULL;
+  }
+  file_reader->file_iterator = file_iterator;
 
-    return file_reader;
+  return file_reader;
 };
 
-int move_reader(File *file_reader, size_t offset) {
-    return fseek(file_reader->file_iterator, offset, 0);
-};
+void destroy_file_reader(File **file) {
+  if (!*file) {
+    return;
+  }
 
-void destroy_file_reader(File *file_reader) {
-    fclose(file_reader->file_iterator);
-}
-
-int read_number(File *file_reader) {
-    int value = 0;
-    int res = 0;
-    do {
-        res = fscanf(file_reader->file_iterator, "%1d", &value);
-
-    } while (res != 1);
-    return value;
-};
-
-void delete_file(File **file) {
+  if ((*file)->file_iterator != NULL) {
     fclose((*file)->file_iterator);
-    free(*file);
-    file = NULL;
+  }
+
+  free(*file);
+  *file = NULL;
 }
+
+double read_number(File *file_reader) {
+  if (!file_reader) {
+    return 0;
+  }
+
+  double value = 0;
+  int res = 0;
+  do {
+    res = fscanf(file_reader->file_iterator, "%lf", &value);
+
+  } while (res != 1);
+  return value;
+};
