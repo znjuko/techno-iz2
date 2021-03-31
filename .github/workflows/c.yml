@@ -2,7 +2,7 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ dev, main ]
+    branches: [ dev ]
   pull_request:
     branches: [ main ]
 
@@ -35,14 +35,8 @@ jobs:
       - name: running tests
         run: make run-all-tests
 
-#      - name: check for memory leaks
-#        run: make valgrind-check-all
-
-#      - name: Archive valgrind results
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: valgrind-report
-#          path: valgrind_output/
+      - name: check for memory leaks
+        run: make vg-check-tests
 
       - name: get test coverage
         run: make get-all-coverage
@@ -58,4 +52,7 @@ jobs:
         with:
           name: executable
           path: build/cmd/main
+
+      - name: run productivity tests
+        run: make generate-test-data && make run-productivity
 

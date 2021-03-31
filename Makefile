@@ -28,16 +28,20 @@ run-all-tests:
 	make run-file-calc && make run-file-test && make run-storage-test && make run-collector-async && make run-collector-sync
 
 vg-check:
-	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --undef-value-errors=no --verbose ./$(BUILD_DIR)/tests/unit/$(dir)/$(name)_test
+	cd $(BUILD_DIR)/tests/unit/$(dir)/ && valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --undef-value-errors=no --verbose ./$(name)_test
 
 vg-check-tests:
-	make vg-check name=storage && make vg-check name=file && make vg-check name=length_calculator
+	make vg-check dir=storage name=storage  \
+		&& make vg-check dir=file name=file  \
+			&& make vg-check name=length_calculator dir=length_calculator  \
+				&& make vg-check name=collector_sync dir=collector/sync
 
 generate-test-data:
 	python3 ./generator.py tests/unit/productivity/sync/data/file.txt && python3 ./generator.py tests/unit/productivity/async/data/file.txt
 
 run-productivity:
-	make run-test-template name=productivity/sync dir=productivity_sync_test && make run-test-template name=productivity/async dir=productivity_async_test
+	make run-test-template name=productivity/sync dir=productivity_sync_test  \
+		&& make run-test-template name=productivity/async dir=productivity_async_test
 
 generate-gcov:
 	cd $(output) && gcov $(dir)/src/$(lib_dir)/CMakeFiles/$(lib_dir).dir/$(lib_name).c.gcno && cp -rf $(dir)/src/$(lib_dir)/CMakeFiles/$(lib_dir).dir/ .
