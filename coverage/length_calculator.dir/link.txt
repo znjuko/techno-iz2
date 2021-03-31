@@ -1,2 +1,0 @@
-/usr/bin/ar qc liblength_calculator.a  CMakeFiles/length_calculator.dir/length_calculator.c.o
-/usr/bin/ranlib liblength_calculator.a

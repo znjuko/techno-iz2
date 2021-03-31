@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdata_storage.a  CMakeFiles/data_storage.dir/storage.c.o
-/usr/bin/ranlib libdata_storage.a
