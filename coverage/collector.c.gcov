@@ -1,0 +1,36 @@
+        -:    0:Source:/home/paccbet/techno/technopark-cpp/techno-iz2/src/collector/collector.c
+        -:    0:Graph:../build/src/collector/CMakeFiles/collector.dir/collector.c.gcno
+        -:    0:Data:../build/src/collector/CMakeFiles/collector.dir/collector.c.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Черных Никита Алекандрович on 3/25/21.
+        -:    3://
+        -:    4:
+        -:    5:#include "collector.h"
+        -:    6:
+        2:    7:Total* collect_size(File* file, size_t size)
+        -:    8:{
+        2:    9:    if (!file) {
+        1:   10:        return NULL;
+        -:   11:    }
+        -:   12:
+        1:   13:    Total* total = (Total*)calloc(1, sizeof(Total));
+        1:   14:    if (!total) {
+    #####:   15:        return NULL;
+        -:   16:    }
+        -:   17:
+        1:   18:    Storage* storage = create_storage(size);
+        1:   19:    if (storage == NULL) {
+    #####:   20:        free(total);
+        -:   21:
+    #####:   22:        return NULL;
+        -:   23:    }
+        -:   24:
+        1:   25:    fill_storage(storage, read_number, file);
+        -:   26:
+        1:   27:    total->value = calculate_storage(storage, calculate_length);
+        -:   28:
+        1:   29:    delete_storage(&storage);
+        -:   30:
+        1:   31:    return total;
+        -:   32:};

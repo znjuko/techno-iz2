@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcollector.a  CMakeFiles/collector.dir/collector.c.o
+/usr/bin/ranlib libcollector.a

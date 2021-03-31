@@ -1,0 +1,20 @@
+        -:    0:Source:/home/paccbet/techno/technopark-cpp/techno-iz2/src/length_calculator/length_calculator.c
+        -:    0:Graph:../build/src/length_calculator/CMakeFiles/length_calculator.dir/length_calculator.c.gcno
+        -:    0:Data:../build/src/length_calculator/CMakeFiles/length_calculator.dir/length_calculator.c.gcda
+        -:    0:Runs:5
+        -:    1://
+        -:    2:// Created by Черных Никита Алекандрович on 3/25/21.
+        -:    3://
+        -:    4:
+        -:    5:#include "length_calculator.h"
+        -:    6:
+        -:    7:#include <math.h>
+        -:    8:
+       12:    9:double calculate_length(const Point* a, const Point* b)
+        -:   10:{
+       12:   11:    if (!a || !b) {
+        2:   12:        return 0;
+        -:   13:    }
+        -:   14:
+       10:   15:    return sqrt((a->x - b->x) * (a->x - b->x) + (a->y - b->y) * (a->y - b->y));
+        -:   16:};

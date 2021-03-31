@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/data_storage/storage.h
+stdlib.h
+-
+file.h
+../src/data_storage/file.h
+models.h
+../src/data_storage/models.h
+storage.h
+../src/data_storage/storage.h
+
+../src/file/file.h
+stdio.h
+-
+stdlib.h
+-
+
+../src/length_calculator/length_calculator.h
+models.h
+../src/length_calculator/models.h
+
+../src/models/models.h
+stdbool.h
+-
+
+/home/paccbet/techno/technopark-cpp/techno-iz2/src/collector/collector.c
+collector.h
+/home/paccbet/techno/technopark-cpp/techno-iz2/src/collector/collector.h
+
+/home/paccbet/techno/technopark-cpp/techno-iz2/src/collector/collector.h
+file.h
+/home/paccbet/techno/technopark-cpp/techno-iz2/src/collector/file.h
+length_calculator.h
+/home/paccbet/techno/technopark-cpp/techno-iz2/src/collector/length_calculator.h
+models.h
+/home/paccbet/techno/technopark-cpp/techno-iz2/src/collector/models.h
+storage.h
+/home/paccbet/techno/technopark-cpp/techno-iz2/src/collector/storage.h
+
