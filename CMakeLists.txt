@@ -17,7 +17,8 @@ add_subdirectory(cmd)
 if(test)
     enable_testing()
 
-    add_subdirectory(vendor/googletest)
+    find_package(GTest REQUIRED)
+    find_package(Threads REQUIRED)
 
     add_subdirectory(tests)
 endif(test)

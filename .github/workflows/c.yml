@@ -29,6 +29,9 @@ jobs:
       - name: installing valgrind
         run: sudo apt install valgrind
 
+      - name: install gtest
+        run: sudo apt install libgtest-dev
+
       - name: generating test data
         run: make generate-test-data
 

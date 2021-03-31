@@ -5,11 +5,9 @@ project(storage_test)
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRCS})
 
 TARGET_LINK_LIBRARIES(${PROJECT_NAME}
-        file
-        data_storage
-        gtest
-        models
-        length_calculator
+        file models data_storage length_calculator
+        ${GTEST_LIBRARIES}
+        Threads::Threads
         )
 
 add_test(NAME ${PROJECT_NAME}

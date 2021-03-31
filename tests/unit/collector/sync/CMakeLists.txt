@@ -6,7 +6,8 @@ ADD_EXECUTABLE(${PROJECT_NAME} ${SRCS})
 
 TARGET_LINK_LIBRARIES(${PROJECT_NAME}
         file models data_storage length_calculator collector input_processing
-        gtest
+        ${GTEST_LIBRARIES}
+        Threads::Threads
         )
 
 add_test(NAME ${PROJECT_NAME}
