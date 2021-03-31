@@ -2,7 +2,7 @@ import sys
 from random import randrange
 
 filename = sys.argv[1]
-number_count = 20000
+number_count = 100000
 
 f = open(filename, "w+")
 
