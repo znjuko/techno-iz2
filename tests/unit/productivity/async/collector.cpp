@@ -13,8 +13,8 @@ extern "C" {
 
 const char* open_params = "r";
 const char* test_filename = "data/file.txt";
-const size_t point_size = 50000;
-const size_t test_count = 400;
+const size_t point_size = 500000;
+const size_t test_count = 40;
 
 TEST(COLLECTOR, COUNT_TIME_ASYNC)
 {
