@@ -33,8 +33,8 @@ char* get_string()
     while (c = get_char(), c != EOF && c != '\n') {
         if (buf.size + 1 >= buf.cap) {
             buf.cap *= 2;
-            char* tmp = (char*)malloc((buf.cap + 1) * sizeof(char));
 
+            char* tmp = (char*)malloc((buf.cap + 1) * sizeof(char));
             if (!tmp) {
                 free(buf.string);
                 return NULL;
