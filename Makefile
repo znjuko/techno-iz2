@@ -75,7 +75,7 @@ generate-lcov-all:
 	make generate-lcov output_filename=coverage/coverage directory=coverage
 
 generate-html-coverage:
-	mkdir coverage_ouput && make generate-coverage-html filename=coverage/coverage directory=coverage_ouput
+	mkdir coverage_output && make generate-coverage-html filename=coverage/coverage directory=coverage_ouput
 
 get-all-coverage:
 	make generate-gcov-all && make generate-lcov-all && make generate-html-coverage
