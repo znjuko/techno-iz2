@@ -11,9 +11,9 @@ int main()
 {
     int result = start_program(open_params);
     if (!result) {
-        printf("error occurred!");
+        printf("error occurred!\n");
     } else {
-        printf("correct execution");
+        printf("correct execution\n");
     }
 
     return 0;

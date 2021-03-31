@@ -49,7 +49,7 @@ int start_program(const char* open_params)
         return 0;
     }
 
-    printf("collected total length %f", total->value);
+    printf("collected total length %f\n", total->value);
 
     free(total);
     destroy_file_reader(&file);
