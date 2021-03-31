@@ -29,6 +29,9 @@ jobs:
       - name: installing valgrind
         run: sudo apt install valgrind
 
+      - name: generating test data
+        run: make generate-test-data
+
       - name: building project
         run: make build-project
 
@@ -54,5 +57,5 @@ jobs:
           path: build/cmd/main
 
       - name: run productivity tests
-        run: make generate-test-data && make run-productivity
+        run:  make run-productivity
 
