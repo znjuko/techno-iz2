@@ -1,0 +1,61 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ dev, main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: installing c++/c compiler
+        run: sudo apt install build-essential
+
+      - name: installing git
+        run: sudo apt install git
+
+      - name: installing lcov
+        run: sudo apt install lcov
+
+      - name: installing python3
+        run: sudo apt install python3
+
+      - name: installing valgrind
+        run: sudo apt install valgrind
+
+      - name: building project
+        run: make build-project
+
+      - name: running tests
+        run: make run-all-tests
+
+#      - name: check for memory leaks
+#        run: make valgrind-check-all
+
+#      - name: Archive valgrind results
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: valgrind-report
+#          path: valgrind_output/
+
+      - name: get test coverage
+        run: make get-all-coverage
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: coverage_output/
+
+      - name: Archive executable
+        uses: actions/upload-artifact@v2
+        with:
+          name: executable
+          path: build/cmd/main
+

@@ -15,4 +15,4 @@ TARGET_LINK_LIBRARIES(${PROJECT_NAME}
 add_test(NAME ${PROJECT_NAME}
         COMMAND ${PROJECT_NAME})
 
-configure_file(data/file.txt data/file.txt COPYONLY)
+file(COPY data/file.txt DESTINATION data)

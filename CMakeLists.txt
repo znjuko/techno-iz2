@@ -1,7 +1,6 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.13)
 
 option(test "Build all tests." ON)
-
 option(parallel "Build parallel version" OFF)
 
 project(techno_iz2)
@@ -15,8 +14,6 @@ set(CMAKE_C_FLAGS "--coverage")
 add_subdirectory(src)
 add_subdirectory(cmd)
 
-
-
 if(test)
     enable_testing()
 
@@ -25,6 +22,6 @@ if(test)
     add_subdirectory(tests)
 endif(test)
 
-
 unset(test CACHE)
 unset(parallel CACHE)
+unset(code_coverage CACHE)

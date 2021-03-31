@@ -1,6 +1,6 @@
 file(GLOB SRCS *.cpp)
 
-project(cproductivity_sync_test)
+project(productivity_sync_test)
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRCS})
 
