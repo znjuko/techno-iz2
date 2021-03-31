@@ -19,7 +19,7 @@ Storage* create_storage(size_t size)
     return storage;
 }
 
-void fill_storage(Storage* storage, double (*read_number)(File*),
+void fill_storage(Storage* storage, int32_t (*read_number)(File*),
     File* file_reader)
 {
     if (!storage || !file_reader) {
