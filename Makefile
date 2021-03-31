@@ -40,8 +40,8 @@ generate-test-data:
 	python3 ./generator.py tests/unit/productivity/sync/data/file.txt && python3 ./generator.py tests/unit/productivity/async/data/file.txt
 
 run-productivity:
-	make run-test-template name=productivity_sync_test dir=productivity/sync \
-		&& make run-test-template name=productivity_async_test dir=productivity/async
+	make run-test-template name=productivity_sync dir=productivity/sync \
+		&& make run-test-template name=productivity_async dir=productivity/async
 
 generate-gcov:
 	cd $(output) && gcov $(dir)/src/$(lib_dir)/CMakeFiles/$(lib_dir).dir/$(lib_name).c.gcno && cp -rf $(dir)/src/$(lib_dir)/CMakeFiles/$(lib_dir).dir/ .
