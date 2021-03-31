@@ -5,16 +5,17 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "length_calculator.h"
-#include "models.h"
+    #include "length_calculator.h"
+    #include "models.h"
+    #include <stdint.h>
 }
 
-const double first_x = 10;
-const double first_y = 10;
-const double second_x = 0;
-const double second_y = 10;
-const double expect_correct_length = 10;
-const double expect_zero_length = 0;
+const int32_t first_x = 10;
+const int32_t first_y = 10;
+const int32_t second_x = 0;
+const int32_t second_y = 10;
+const int32_t expect_correct_length = 10;
+const int32_t expect_zero_length = 0;
 
 TEST(CALCULATE_LENGTH, CORRECT_VALUES)
 {

@@ -5,10 +5,11 @@
 #ifndef TECHNO_IZ2_MODELS_H
 #define TECHNO_IZ2_MODELS_H
 #include <stdbool.h>
+#include <stdint.h>
 
 typedef struct {
-    double x;
-    double y;
+    int32_t x;
+    int32_t y;
 } Point;
 
 typedef struct {
