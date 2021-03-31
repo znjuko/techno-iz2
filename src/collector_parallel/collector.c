@@ -24,6 +24,7 @@ Total *collect_size(File *file, size_t size) {
     }
 
     size_t process_count = sysconf(_SC_NPROCESSORS_ONLN);
+    printf("proc count %d", process_count);
     size_t parts_count = size / process_count;
     int msg_q = msgget(IPC_PRIVATE, IPC_CREAT | 0660);
     if (msg_q == -1) {
