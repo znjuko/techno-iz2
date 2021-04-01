@@ -61,4 +61,4 @@ jobs:
         run:  make run-test-productivity-template name=productivity_sync dir=sync
 
       - name: run productivity tests for async realisation
-        run:  make run-test-productivity-template name=productivity_async dir=async        
+        run:  make run-test-productivity-template name=productivity_async dir=async
