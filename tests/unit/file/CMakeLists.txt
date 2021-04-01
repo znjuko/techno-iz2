@@ -13,4 +13,4 @@ TARGET_LINK_LIBRARIES(${PROJECT_NAME}
 add_test(NAME ${PROJECT_NAME}
         COMMAND ${PROJECT_NAME})
 
-#file(COPY data/file.txt DESTINATION data)
+file(COPY data/file.txt DESTINATION data)
