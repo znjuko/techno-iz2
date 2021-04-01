@@ -5,15 +5,17 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "file.h"
+    #include <stdint.h>
+
+    #include "file.h"
 }
 
 const char* open_params = "r";
 const char* correct_filename = "data/file.txt";
 const char* incorrect_filename = "filename.txt";
 
-const double first_file_number = 1;
-const double empty_number = 0;
+const int32_t first_file_number = 1;
+const int32_t empty_number = 0;
 
 TEST(CREATE_FILE_READER, OPEN_EXISTING_FILE)
 {

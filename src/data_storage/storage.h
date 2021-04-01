@@ -5,6 +5,7 @@
 #ifndef TECHNO_IZ2_DSTORAGE_H
 #define TECHNO_IZ2_DSTORAGE_H
 
+#include <stdint.h>
 #include <stdlib.h>
 
 #include "file.h"
@@ -18,7 +19,7 @@ typedef struct {
 
 Storage* create_storage(size_t size);
 
-void fill_storage(Storage* storage, double (*read_number)(File* file_reader),
+void fill_storage(Storage* storage, int32_t (*read_number)(File* file_reader),
     File* file_reader);
 
 double calculate_storage(Storage* storage,

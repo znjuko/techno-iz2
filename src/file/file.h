@@ -6,6 +6,7 @@
 #define TECHNO_IZ2_FILE_H
 
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 typedef struct {
@@ -14,7 +15,7 @@ typedef struct {
 
 void destroy_file_reader(File** file_reader);
 
-double read_number(File* file_reader);
+int32_t read_number(File* file_reader);
 
 File* create_file_reader(const char* filename, const char* open_params);
 

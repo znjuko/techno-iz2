@@ -34,7 +34,7 @@ void destroy_file_reader(File** file)
     *file = NULL;
 }
 
-double read_number(File* file_reader)
+int32_t read_number(File* file_reader)
 {
     if (!file_reader) {
         return 0;
