@@ -6,7 +6,7 @@
 
 #include <math.h>
 
-double calculate_length(const Point* a, const Point* b)
+double calculate_length(const point* a, const point* b)
 {
     if (!a || !b) {
         return 0;

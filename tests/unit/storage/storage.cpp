@@ -19,23 +19,23 @@ const double first_file_number = 1;
 const size_t empty_size = 0;
 const size_t file_size = 4;
 
-const Point fp = { 1, 2 };
-const Point sp = { 3, 4 };
-const Point tp = { 5, 6 };
-const Point frp = { 7, 8 };
+const point fp = { 1, 2 };
+const point sp = { 3, 4 };
+const point tp = { 5, 6 };
+const point frp = { 7, 8 };
 
-const Point cal_first = { 10, 10 };
-const Point cal_second = { 10, 0 };
+const point cal_first = { 10, 10 };
+const point cal_second = { 10, 0 };
 const double length = 10;
 const size_t storage_size = 2;
 
 const double empty_length = 0;
 
-bool cmp(const Point a, const Point b) { return a.x == b.x && a.y == b.y; }
+bool cmp(const point a, const point b) { return a.x == b.x && a.y == b.y; }
 
 TEST(CREATE_STORAGE, CREATE_EMPTY_STORAGE)
 {
-    Storage* str = create_storage(empty_size);
+    storage* str = create_storage(empty_size);
     EXPECT_TRUE(str);
     EXPECT_TRUE(str->points);
     ASSERT_EQ(empty_size, str->size);
@@ -46,7 +46,7 @@ TEST(CREATE_STORAGE, CREATE_EMPTY_STORAGE)
 
 TEST(CREATE_STORAGE, DESTROY_EXISTING_STORAGE)
 {
-    Storage* str = create_storage(empty_size);
+    storage* str = create_storage(empty_size);
     EXPECT_TRUE(str);
     EXPECT_TRUE(str->points);
     ASSERT_EQ(empty_size, str->size);
@@ -57,7 +57,7 @@ TEST(CREATE_STORAGE, DESTROY_EXISTING_STORAGE)
 
 TEST(CREATE_STORAGE, DESTROY_EMPTY_STORAGE)
 {
-    Storage* str = nullptr;
+    storage* str = nullptr;
 
     delete_storage(&str);
     EXPECT_TRUE(!str);
@@ -65,10 +65,10 @@ TEST(CREATE_STORAGE, DESTROY_EMPTY_STORAGE)
 
 TEST(CREATE_STORAGE, FILL_STORAGE_FROM_FILE)
 {
-    File* reader = create_file_reader(correct_filename, open_params);
+    file* reader = create_file_reader(correct_filename, open_params);
     EXPECT_TRUE(reader);
 
-    Storage* str = create_storage(file_size);
+    storage* str = create_storage(file_size);
     EXPECT_TRUE(str);
     EXPECT_TRUE(str->points);
     ASSERT_EQ(file_size, str->size);
@@ -87,10 +87,10 @@ TEST(CREATE_STORAGE, FILL_STORAGE_FROM_FILE)
 
 TEST(CREATE_STORAGE, FILL_EMPTY_STORAGE_FROM_FILE)
 {
-    File* reader = create_file_reader(correct_filename, open_params);
+    file* reader = create_file_reader(correct_filename, open_params);
     EXPECT_TRUE(reader);
 
-    Storage* str = nullptr;
+    storage* str = nullptr;
 
     fill_storage(str, read_number, reader);
 
@@ -100,7 +100,7 @@ TEST(CREATE_STORAGE, FILL_EMPTY_STORAGE_FROM_FILE)
 
 TEST(CALCULATE_STORAGE, CALCULATE_STORAGE)
 {
-    Storage* str = create_storage(storage_size);
+    storage* str = create_storage(storage_size);
     EXPECT_TRUE(str);
     EXPECT_TRUE(str->points);
     ASSERT_EQ(storage_size, str->size);
@@ -116,7 +116,7 @@ TEST(CALCULATE_STORAGE, CALCULATE_STORAGE)
 
 TEST(CALCULATE_STORAGE, CALCULATE_EMPTY_STORAGE)
 {
-    Storage* str = nullptr;
+    storage* str = nullptr;
 
     ASSERT_EQ(empty_length, calculate_storage(str, calculate_length));
 }

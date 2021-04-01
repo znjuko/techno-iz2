@@ -16,6 +16,6 @@
 #include "models.h"
 #include "storage.h"
 
-Total* collect_size(File* file, size_t size);
+total* collect_size(file* file, size_t size);
 
 #endif // TECHNO_IZ2_COLLECTORPAR_H

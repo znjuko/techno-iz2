@@ -30,8 +30,8 @@ int start_program(const char* open_params)
         }
     } while (*count < 2);
 
-    File* file = create_file_reader(filename, open_params);
-    if (file == NULL) {
+    file* f_reader = create_file_reader(filename, open_params);
+    if (f_reader == NULL) {
         printf("failed to open file; stopping execution...\n");
         free(filename);
         free(count);
@@ -39,20 +39,20 @@ int start_program(const char* open_params)
         return 0;
     }
 
-    Total* total = collect_size(file, *count);
-    if (total == NULL) {
+    total* counted = collect_size(f_reader, *count);
+    if (counted == NULL) {
         printf("failed to collect total; stopping execution...\n");
-        destroy_file_reader(&file);
+        destroy_file_reader(&f_reader);
         free(filename);
         free(count);
 
         return 0;
     }
 
-    printf("collected total length %f\n", total->value);
+    printf("collected total length %f\n", counted->value);
 
-    free(total);
-    destroy_file_reader(&file);
+    free(counted);
+    destroy_file_reader(&f_reader);
     free(filename);
     free(count);
 

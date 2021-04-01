@@ -16,10 +16,10 @@ const size_t point_counter = 7;
 
 TEST(COLLECTOR, CALCULATE_CORRECT_RESULT)
 {
-    File* reader = create_file_reader(test_filename, open_params);
+    file* reader = create_file_reader(test_filename, open_params);
     EXPECT_TRUE(reader);
 
-    Total* res = collect_size(reader, point_counter);
+    total* res = collect_size(reader, point_counter);
     EXPECT_EQ(answer, res->value);
 
     destroy_file_reader(&reader);
@@ -29,6 +29,6 @@ TEST(COLLECTOR, CALCULATE_CORRECT_RESULT)
 
 TEST(COLLECTOR, CALCULATE_EMPTY_FILE_SYNC)
 {
-    Total* res = collect_size(nullptr, point_counter);
+    total* res = collect_size(nullptr, point_counter);
     EXPECT_TRUE(!res);
 }

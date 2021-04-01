@@ -7,6 +7,6 @@
 
 #include "models.h"
 
-double calculate_length(const Point* a, const Point* b);
+double calculate_length(const point* a, const point* b);
 
 #endif // TECHNO_IZ2_LCALC_H

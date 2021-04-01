@@ -4,14 +4,14 @@
 
 #include "file.h"
 
-File* create_file_reader(const char* filename, const char* open_params)
+file* create_file_reader(const char* filename, const char* open_params)
 {
     FILE* file_iterator = fopen(filename, open_params);
     if (!file_iterator) {
         return NULL;
     }
 
-    File* file_reader = (File*)calloc(1, sizeof(File));
+    file* file_reader = (file*)calloc(1, sizeof(file));
     if (!file_reader) {
         return NULL;
     }
@@ -20,7 +20,7 @@ File* create_file_reader(const char* filename, const char* open_params)
     return file_reader;
 };
 
-void destroy_file_reader(File** file)
+void destroy_file_reader(file** file)
 {
     if (!*file) {
         return;
@@ -34,7 +34,7 @@ void destroy_file_reader(File** file)
     *file = NULL;
 }
 
-int32_t read_number(File* file_reader)
+int32_t read_number(file* file_reader)
 {
     if (!file_reader) {
         return 0;

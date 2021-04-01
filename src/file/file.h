@@ -5,18 +5,18 @@
 #ifndef TECHNO_IZ2_FILE_H
 #define TECHNO_IZ2_FILE_H
 
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct {
     FILE* file_iterator;
-} File;
+} file;
 
-void destroy_file_reader(File** file_reader);
+void destroy_file_reader(file** file_reader);
 
-int32_t read_number(File* file_reader);
+int32_t read_number(file* file_reader);
 
-File* create_file_reader(const char* filename, const char* open_params);
+file* create_file_reader(const char* filename, const char* open_params);
 
 #endif // TECHNO_IZ2_FILE_H

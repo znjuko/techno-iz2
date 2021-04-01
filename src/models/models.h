@@ -10,10 +10,10 @@
 typedef struct {
     int32_t x;
     int32_t y;
-} Point;
+} point;
 
 typedef struct {
     double value;
-} Total;
+} total;
 
 #endif // TECHNO_IZ2_MODELS_H

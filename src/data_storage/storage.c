@@ -4,14 +4,14 @@
 
 #include "storage.h"
 
-Storage* create_storage(size_t size)
+storage* create_storage(size_t size)
 {
-    Storage* storage = (Storage*)calloc(1, sizeof(Storage));
+    storage* storage = (storage*)calloc(1, sizeof(storage));
     if (!storage) {
         return NULL;
     }
     storage->size = size;
-    storage->points = (Point*)calloc(size, sizeof(Point));
+    storage->points = (point*)calloc(size, sizeof(point));
     if (!storage->points) {
         return NULL;
     }
@@ -19,8 +19,8 @@ Storage* create_storage(size_t size)
     return storage;
 }
 
-void fill_storage(Storage* storage, int32_t (*read_number)(File*),
-    File* file_reader)
+void fill_storage(storage* storage, int32_t (*read_number)(file*),
+    file* file_reader)
 {
     if (!storage || !file_reader) {
         return;
@@ -32,8 +32,8 @@ void fill_storage(Storage* storage, int32_t (*read_number)(File*),
     }
 }
 
-double calculate_storage(Storage* storage,
-    double (*cal)(const Point* a, const Point* b))
+double calculate_storage(storage* storage,
+    double (*cal)(const point* a, const point* b))
 {
     if (!storage) {
         return 0;
@@ -46,7 +46,7 @@ double calculate_storage(Storage* storage,
     return total;
 }
 
-void delete_storage(Storage** storage)
+void delete_storage(storage** storage)
 {
     if (!(*storage)) {
         return;
