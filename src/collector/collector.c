@@ -15,18 +15,18 @@ total* collect_size(file* file, size_t size)
         return NULL;
     }
 
-    storage* storage = create_storage(size);
-    if (storage == NULL) {
-        free(counted;
+    storage* str = create_storage(size);
+    if (str == NULL) {
+        free(counted);
 
         return NULL;
     }
 
-    fill_storage(storage, read_number, file);
+    fill_storage(str, read_number, file);
 
-    counted->value = calculate_storage(storage, calculate_length);
+    counted->value = calculate_storage(str, calculate_length);
 
-    delete_storage(&storage);
+    delete_storage(&str);
 
     return counted;
 };

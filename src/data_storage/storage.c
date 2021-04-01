@@ -6,53 +6,53 @@
 
 storage* create_storage(size_t size)
 {
-    storage* storage = (storage*)calloc(1, sizeof(storage));
-    if (!storage) {
+    storage* str = (storage*)calloc(1, sizeof(storage));
+    if (!str) {
         return NULL;
     }
-    storage->size = size;
-    storage->points = (point*)calloc(size, sizeof(point));
-    if (!storage->points) {
+    str->size = size;
+    str->points = (point*)calloc(size, sizeof(point));
+    if (!str->points) {
         return NULL;
     }
 
-    return storage;
+    return str;
 }
 
-void fill_storage(storage* storage, int32_t (*read_number)(file*),
+void fill_storage(storage* str, int32_t (*read_number)(file*),
     file* file_reader)
 {
-    if (!storage || !file_reader) {
+    if (!str || !file_reader) {
         return;
     }
 
-    for (size_t i = 0; i < storage->size; ++i) {
-        storage->points[i].x = (*read_number)(file_reader);
-        storage->points[i].y = (*read_number)(file_reader);
+    for (size_t i = 0; i < str->size; ++i) {
+        str->points[i].x = (*read_number)(file_reader);
+        str->points[i].y = (*read_number)(file_reader);
     }
 }
 
-double calculate_storage(storage* storage,
+double calculate_storage(storage* str,
     double (*cal)(const point* a, const point* b))
 {
-    if (!storage) {
+    if (!str) {
         return 0;
     }
 
     double total = 0;
-    for (size_t i = 0; i < storage->size - 1; ++i)
-        total += (*cal)(&storage->points[i], &storage->points[i + 1]);
+    for (size_t i = 0; i < str->size - 1; ++i)
+        total += (*cal)(&str->points[i], &str->points[i + 1]);
 
     return total;
 }
 
-void delete_storage(storage** storage)
+void delete_storage(storage** str)
 {
-    if (!(*storage)) {
+    if (!(*str)) {
         return;
     }
 
-    free((*storage)->points);
-    free(*storage);
-    (*storage) = NULL;
+    free((*str)->points);
+    free(*str);
+    (*str) = NULL;
 }
