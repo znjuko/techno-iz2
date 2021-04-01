@@ -9,6 +9,9 @@ format-code:
 run-test-template:
 	cd $(BUILD_DIR)/tests/unit/$(dir) && ./$(name)_test
 
+run-test-productivity-template:
+	cd $(BUILD_DIR)/tests/productivity/$(dir) && ./$(name)_test
+
 run-storage-test:
 	make run-test-template name=storage dir=storage
 
@@ -37,11 +40,11 @@ vg-check-tests:
 				&& make vg-check name=collector_sync dir=collector/sync
 
 generate-test-data:
-	python3 ./generator.py tests/unit/productivity/sync/data/file.txt && python3 ./generator.py tests/unit/productivity/async/data/file.txt
+	python3 ./generator.py tests/productivity/sync/data/file.txt && python3 ./generator.py tests/productivity/async/data/file.txt
 
 run-productivity:
-	make run-test-template name=productivity_sync dir=productivity/sync \
-		&& make run-test-template name=productivity_async dir=productivity/async
+	make run-test-productivity-template name=productivity_sync dir=sync \
+		&& make run-test-productivity-template name=productivity_async dir=async
 
 generate-gcov:
 	cd $(output) && gcov $(dir)/src/$(lib_dir)/CMakeFiles/$(lib_dir).dir/$(lib_name).c.gcno && cp -rf $(dir)/src/$(lib_dir)/CMakeFiles/$(lib_dir).dir/ .

@@ -1,32 +1,34 @@
 //
-// Created by paccbet on 28.03.2021.
+// Created by paccbet on 01.04.2021.
 //
 
-#include <chrono>
-#include <gtest/gtest.h>
+#include <stdio.h>
+#include <time.h>
 
-using namespace std::chrono;
-
-extern "C" {
 #include "collector.h"
-}
 
 const char* open_params = "r";
 const char* test_filename = "data/file.txt";
 const size_t point_size = 500000;
 const size_t test_count = 500;
 
-TEST(COLLECTOR, COUNT_TIME_SYNC)
-{
+int main()  {
     clock_t begin = clock();
 
     for (size_t i = 0; i < test_count; ++i) {
         File* reader = create_file_reader(test_filename, open_params);
-        EXPECT_TRUE(reader);
+        if(!reader) {
+            printf("failed to open file reader\n");
+            return 1;
+        }
+
         Total* res = collect_size(reader, point_size);
         free(res);
         destroy_file_reader(&reader);
     }
 
-    std::cout << "time elapsed: " << (double)(clock() - begin) / (CLOCKS_PER_SEC * test_count) << std::endl;
+    printf("time elapsed: %f\n", (double)(clock() - begin) / (CLOCKS_PER_SEC * test_count));
+
+
+    return 0;
 }
