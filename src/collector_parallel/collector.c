@@ -8,16 +8,16 @@ const long msg_type = 69420;
 typedef struct {
     long mtype;
     double value;
-} Message;
+} message;
 
-bool send_message(int qid, Message* msg)
+int send_message(int qid, message* msg)
 {
     return msgsnd(qid, (struct msgbuf*)msg, sizeof(msg->value), 0) != -1;
 }
 
-bool rcv_message(int qid, Message* msg, long type)
+ssize_t receive_message(int qid, message* msg, long type)
 {
-    return msgrcv(qid, (struct msgbuf*)msg, sizeof(msg->value), type, 0) != -1;
+    return msgrcv(qid, (struct msgbuf*)msg, sizeof(msg->value), type, 0);
 }
 
 total* collect_size(file* file, size_t size)
@@ -68,9 +68,9 @@ total* collect_size(file* file, size_t size)
         storage pid_storage = { storage_size, str->points + i * parts_count };
 
         counted->value = calculate_storage(&pid_storage, calculate_length);
-        Message msg = { msg_type, counted->value };
+        message msg = {msg_type, counted->value };
 
-        if (!send_message(msg_q, &msg))
+        if (send_message(msg_q, &msg) != -1)
             exit(EXIT_FAILURE);
 
         exit(EXIT_SUCCESS);
@@ -88,8 +88,8 @@ total* collect_size(file* file, size_t size)
     }
 
     for (size_t i = 0; i < process_count; ++i) {
-        Message msg = { msg_type, 0 };
-        if (!rcv_message(msg_q, &msg, msg_type)) {
+        message msg = {msg_type, 0 };
+        if (receive_message(msg_q, &msg, msg_type) != -1) {
             delete_storage(&str);
             free(pids);
             free(counted);

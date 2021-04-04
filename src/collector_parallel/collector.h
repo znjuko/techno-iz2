@@ -5,7 +5,6 @@
 #ifndef TECHNO_IZ2_COLLECTORPAR_H
 #define TECHNO_IZ2_COLLECTORPAR_H
 
-#include <stdbool.h>
 #include <stdlib.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
