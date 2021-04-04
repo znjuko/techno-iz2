@@ -47,7 +47,7 @@ run-productivity:
 		&& make run-test-productivity-template name=productivity_async dir=async
 
 generate-gcov:
-	cd $(output) && gcov $(dir)/src/$(lib_path)/CMakeFiles/$(lib_dir).dir/$(lib_name).c.gcno && cp -rf $(dir)/src/$(lib_dir)/CMakeFiles/$(lib_dir).dir/ .
+	cd $(output) && gcov $(dir)/src/$(lib_path)/CMakeFiles/$(lib_dir).dir/$(lib_name).c.gcno && cp -rf $(dir)/src/$(lib_path)/CMakeFiles/$(lib_dir).dir/ .
 
 generate-gcov-storage:
 	make generate-gcov  dir=../$(BUILD_DIR)  lib_path=data_storage lib_dir=data_storage  lib_name=storage output=coverage
