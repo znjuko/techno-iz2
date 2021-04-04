@@ -47,22 +47,22 @@ run-productivity:
 		&& make run-test-productivity-template name=productivity_async dir=async
 
 generate-gcov:
-	cd $(output) && gcov $(dir)/src/$(lib_dir)/CMakeFiles/$(lib_dir).dir/$(lib_name).c.gcno && cp -rf $(dir)/src/$(lib_dir)/CMakeFiles/$(lib_dir).dir/ .
+	cd $(output) && gcov $(dir)/src/$(lib_path)/CMakeFiles/$(lib_dir).dir/$(lib_name).c.gcno && cp -rf $(dir)/src/$(lib_dir)/CMakeFiles/$(lib_dir).dir/ .
 
 generate-gcov-storage:
-	make generate-gcov  dir=../$(BUILD_DIR)  lib_dir=data_storage  lib_name=storage output=coverage
+	make generate-gcov  dir=../$(BUILD_DIR)  lib_path=data_storage lib_dir=data_storage  lib_name=storage output=coverage
 
 generate-gcov-file:
-	make generate-gcov  dir=../$(BUILD_DIR)  lib_dir=file  lib_name=file output=coverage
+	make generate-gcov  dir=../$(BUILD_DIR)  lib_path=file lib_dir=file  lib_name=file output=coverage
 
 generate-gcov-collector:
-	make generate-gcov  dir=../$(BUILD_DIR)  lib_dir=collector  lib_name=collector output=coverage
+	make generate-gcov  dir=../$(BUILD_DIR)  lib_path=collector/sync lib_dir=collector  lib_name=collector output=coverage
 
 generate-gcov-collector-parallel:
-	make generate-gcov  dir=../$(BUILD_DIR)  lib_dir=collector_parallel  lib_name=collector output=coverage
+	make generate-gcov  dir=../$(BUILD_DIR)  lib_path=collector/async lib_dir=collector_parallel  lib_name=collector output=coverage
 
 generate-gcov-collector-parallel:
-	make generate-gcov  dir=../$(BUILD_DIR)  lib_dir=length_calculator  lib_name=length_calculator output=coverage
+	make generate-gcov  dir=../$(BUILD_DIR)  lib_path=length_calculator lib_dir=length_calculator  lib_name=length_calculator output=coverage
 
 generate-coverage-html:
 	genhtml $(filename).info --output-directory $(directory)
