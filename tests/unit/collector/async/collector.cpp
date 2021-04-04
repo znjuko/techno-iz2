@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "collector.h"
+    #include "collector.h"
 }
 
 const char* open_params = "r";
@@ -16,14 +16,13 @@ const size_t point_counter = 7;
 
 TEST(COLLECTOR, CALCULATE_CORRECT_RESULT_ASYNC)
 {
-    file* reader = create_file_reader(test_filename, open_params);
+    FILE* reader = create_file_reader(test_filename, open_params);
     EXPECT_TRUE(reader);
 
     total* res = collect_size(reader, point_counter);
     EXPECT_EQ(answer, res->value);
 
-    destroy_file_reader(&reader);
-    EXPECT_TRUE(!reader);
+    fclose(reader);
     free(res);
 }
 

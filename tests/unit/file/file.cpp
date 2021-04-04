@@ -19,52 +19,44 @@ const int32_t empty_number = 0;
 
 TEST(CREATE_FILE_READER, OPEN_EXISTING_FILE)
 {
-    file* reader = create_file_reader(correct_filename, open_params);
+    FILE* reader = create_file_reader(correct_filename, open_params);
     EXPECT_TRUE(reader);
-    fclose(reader->file_iterator);
-    free(reader);
+    fclose(reader);
 }
 
 TEST(CREATE_FILE_READER, OPEN_NOT_EXISTING_FILE)
 {
-    file* reader = create_file_reader(incorrect_filename, open_params);
+    FILE* reader = create_file_reader(incorrect_filename, open_params);
     EXPECT_TRUE(!reader);
 }
 
 TEST(CREATE_FILE_READER, CLOSE_EXISTING_FILE)
 {
-    file* reader = create_file_reader(correct_filename, open_params);
+    FILE* reader = create_file_reader(correct_filename, open_params);
     EXPECT_TRUE(reader);
-    destroy_file_reader(&reader);
-    EXPECT_TRUE(!reader);
+    fclose(reader);
 }
 
 TEST(CREATE_FILE_READER, CLOSE_NOT_EXISTING_FILE)
 {
-    file* reader = create_file_reader(incorrect_filename, open_params);
-    EXPECT_TRUE(!reader);
-    destroy_file_reader(&reader);
+    FILE* reader = create_file_reader(incorrect_filename, open_params);
     EXPECT_TRUE(!reader);
 }
 
 TEST(READ_FILE, READ_FIRST_NUMBER_IN_EXISTING_FILE)
 {
-    file* reader = create_file_reader(correct_filename, open_params);
+    FILE* reader = create_file_reader(correct_filename, open_params);
     EXPECT_TRUE(reader);
 
     EXPECT_EQ(first_file_number, read_number(reader));
 
-    destroy_file_reader(&reader);
-    EXPECT_TRUE(!reader);
+    fclose(reader);
 }
 
 TEST(READ_FILE, READ_FIRST_NUMBER_IN_NOT_EXISTING_FILE)
 {
-    file* reader = create_file_reader(incorrect_filename, open_params);
+    FILE* reader = create_file_reader(incorrect_filename, open_params);
     EXPECT_TRUE(!reader);
 
     EXPECT_EQ(empty_number, read_number(reader));
-
-    destroy_file_reader(&reader);
-    EXPECT_TRUE(!reader);
 }

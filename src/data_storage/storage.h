@@ -17,14 +17,14 @@ typedef struct {
     point* points;
 } storage;
 
-storage* create_storage(size_t size);
+storage create_storage(size_t size);
 
-void fill_storage(storage* storage, int32_t (*read_number)(file* file_reader),
-    file* file_reader);
+void fill_storage(storage* storage, int32_t (*read_number)(FILE* file_reader),
+    FILE* file_reader);
 
 double calculate_storage(storage* storage,
     double (*cal)(const point* a, const point* b));
 
-void delete_storage(storage** storage);
+void delete_storage(storage* storage);
 
 #endif // TECHNO_IZ2_DSTORAGE_H

@@ -1,7 +1,14 @@
 //
 // Created by Черных Никита Алекандрович on 3/25/21.
 //
-#include "collector.h"
+
+#include <stdlib.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+#include "../collector.h"
 
 const long msg_type = 69420;
 
@@ -20,7 +27,7 @@ ssize_t receive_message(int qid, message* msg, long type)
     return msgrcv(qid, (struct msgbuf*)msg, sizeof(msg->value), type, 0);
 }
 
-total* collect_size(file* file, size_t size)
+total* collect_size(FILE* file, size_t size)
 {
     if (!file) {
         return NULL;
@@ -45,14 +52,14 @@ total* collect_size(file* file, size_t size)
         return NULL;
     }
 
-    storage* str = create_storage(size);
-    if (str == NULL) {
+    storage str = create_storage(size);
+    if (!str.points) {
         free(counted);
         free(pids);
 
         return NULL;
     }
-    fill_storage(str, read_number, file);
+    fill_storage(&str, read_number, file);
 
     for (size_t i = 0; i < process_count; ++i) {
         pids[i] = fork();
@@ -65,12 +72,12 @@ total* collect_size(file* file, size_t size)
             ? parts_count + 1
             : parts_count + size % process_count;
 
-        storage pid_storage = { storage_size, str->points + i * parts_count };
+        storage pid_storage = { storage_size, str.points + i * parts_count };
 
         counted->value = calculate_storage(&pid_storage, calculate_length);
         message msg = {msg_type, counted->value };
 
-        if (send_message(msg_q, &msg) != -1)
+        if (send_message(msg_q, &msg) == -1)
             exit(EXIT_FAILURE);
 
         exit(EXIT_SUCCESS);
@@ -89,7 +96,7 @@ total* collect_size(file* file, size_t size)
 
     for (size_t i = 0; i < process_count; ++i) {
         message msg = {msg_type, 0 };
-        if (receive_message(msg_q, &msg, msg_type) != -1) {
+        if (receive_message(msg_q, &msg, msg_type) == -1) {
             delete_storage(&str);
             free(pids);
             free(counted);
