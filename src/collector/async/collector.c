@@ -27,37 +27,29 @@ ssize_t receive_message(int qid, message* msg, long type)
     return msgrcv(qid, (struct msgbuf*)msg, sizeof(msg->value), type, 0);
 }
 
-total* collect_size(FILE* file, size_t size)
+double collect_size(FILE* file, size_t size)
 {
     if (!file) {
-        return NULL;
+        return EXECUTION_FAILED ;
     }
 
     size_t process_count = sysconf(_SC_NPROCESSORS_ONLN);
     size_t parts_count = size / process_count;
     int msg_q = msgget(IPC_PRIVATE, IPC_CREAT | 0660);
     if (msg_q == -1) {
-        return NULL;
-    }
-
-    total* counted = (total*)calloc(1, sizeof(total));
-    if (!counted) {
-        return NULL;
+        return EXECUTION_FAILED;
     }
 
     int* pids = (int*)calloc(process_count, sizeof(int));
     if (!pids) {
-        free(counted);
-
-        return NULL;
+        return EXECUTION_FAILED;
     }
 
     storage str = create_storage(size);
     if (!str.points) {
-        free(counted);
         free(pids);
 
-        return NULL;
+        return EXECUTION_FAILED;
     }
     fill_storage(&str, read_number, file);
 
@@ -74,8 +66,8 @@ total* collect_size(FILE* file, size_t size)
 
         storage pid_storage = { storage_size, str.points + i * parts_count };
 
-        counted->value = calculate_storage(&pid_storage, calculate_length);
-        message msg = {msg_type, counted->value };
+        double value = calculate_storage(&pid_storage, calculate_length);
+        message msg = {msg_type, value };
 
         if (send_message(msg_q, &msg) == -1)
             exit(EXIT_FAILURE);
@@ -88,33 +80,30 @@ total* collect_size(FILE* file, size_t size)
         if (waitpid(pids[i], &status, 0) != pids[i] || WEXITSTATUS(status) != 0) {
             delete_storage(&str);
             free(pids);
-            free(counted);
 
-            return NULL;
+            return EXECUTION_FAILED;
         }
     }
 
+    double value = 0;
     for (size_t i = 0; i < process_count; ++i) {
         message msg = {msg_type, 0 };
         if (receive_message(msg_q, &msg, msg_type) == -1) {
             delete_storage(&str);
             free(pids);
-            free(counted);
 
-            return NULL;
+            return EXECUTION_FAILED;
         }
 
-        counted->value += msg.value;
+        value += msg.value;
     }
 
     if (msgctl(msg_q, IPC_RMID, NULL) < 0) {
         printf("failed to remove query!");
-        free(counted);
-        counted = NULL;
     }
 
     free(pids);
     delete_storage(&str);
 
-    return counted;
+    return value;
 };

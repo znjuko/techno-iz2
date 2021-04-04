@@ -12,8 +12,6 @@ typedef struct {
     int32_t y;
 } point;
 
-typedef struct {
-    double value;
-} total;
+#define EXECUTION_FAILED -1
 
 #endif // TECHNO_IZ2_MODELS_H

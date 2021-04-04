@@ -23,8 +23,7 @@ int main()
             return 1;
         }
 
-        total* res = collect_size(reader, point_size);
-        free(res);
+        collect_size(reader, point_size);
         fclose(reader);
     }
 

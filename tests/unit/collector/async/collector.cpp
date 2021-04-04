@@ -5,29 +5,26 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-    #include "collector.h"
+#include "collector.h"
 }
 
-const char* open_params = "r";
-const char* test_filename = "data/file.txt";
+const char *open_params = "r";
+const char *test_filename = "data/file.txt";
 
 const double answer = 32;
 const size_t point_counter = 7;
 
-TEST(COLLECTOR, CALCULATE_CORRECT_RESULT_ASYNC)
-{
-    FILE* reader = create_file_reader(test_filename, open_params);
+TEST(COLLECTOR, CALCULATE_CORRECT_RESULT_ASYNC) {
+    FILE *reader = create_file_reader(test_filename, open_params);
     EXPECT_TRUE(reader);
 
-    total* res = collect_size(reader, point_counter);
-    EXPECT_EQ(answer, res->value);
+    double res = collect_size(reader, point_counter);
+    EXPECT_EQ(answer, res);
 
     fclose(reader);
-    free(res);
 }
 
-TEST(COLLECTOR, CALCULATE_EMPTY_FILE_ASYNC)
-{
-    total* res = collect_size(nullptr, point_counter);
-    EXPECT_TRUE(!res);
+TEST(COLLECTOR, CALCULATE_EMPTY_FILE_ASYNC) {
+    double res = collect_size(nullptr, point_counter);
+    EXPECT_EQ(EXECUTION_FAILED, res);
 }
