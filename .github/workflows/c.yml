@@ -1,0 +1,64 @@
+name: C/C++ CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: installing c++/c compiler
+        run: sudo apt install build-essential
+
+      - name: installing git
+        run: sudo apt install git
+
+      - name: installing lcov
+        run: sudo apt install lcov
+
+      - name: installing python3
+        run: sudo apt install python3
+
+      - name: installing valgrind
+        run: sudo apt install valgrind
+
+      - name: install gtest
+        run: sudo apt install libgtest-dev
+
+      - name: generating test data
+        run: make generate-test-data
+
+      - name: building project
+        run: make build-project
+
+      - name: running tests
+        run: make run-all-tests
+
+      - name: check for memory leaks
+        run: make vg-check-tests
+
+      - name: get test coverage
+        run: make get-all-coverage
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: coverage_output/
+
+      - name: Archive executable
+        uses: actions/upload-artifact@v2
+        with:
+          name: executable
+          path: build/cmd/main
+
+      - name: run productivity tests for sync realisation
+        run:  make run-test-productivity-template name=productivity_sync dir=sync
+
+      - name: run productivity tests for async realisation
+        run:  make run-test-productivity-template name=productivity_async dir=async

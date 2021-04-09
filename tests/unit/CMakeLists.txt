@@ -1,0 +1,4 @@
+add_subdirectory(length_calculator)
+add_subdirectory(file)
+add_subdirectory(storage)
+add_subdirectory(collector)
