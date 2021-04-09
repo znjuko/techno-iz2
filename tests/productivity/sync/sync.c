@@ -9,7 +9,7 @@
 
 const char* open_params = "r";
 const char* test_filename = "data/file.txt";
-const size_t point_size = 500000;
+const size_t point_size = 2000000;
 const size_t test_count = 1000;
 
 int main()
@@ -22,8 +22,10 @@ int main()
             printf("failed to open file reader\n");
             return 1;
         }
-
+        printf("started!");
         collect_size(reader, point_size);
+        printf("ended!");
+
         fclose(reader);
     }
 

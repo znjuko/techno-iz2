@@ -19,10 +19,10 @@ const double first_file_number = 1;
 const size_t empty_size = 0;
 const size_t file_size = 4;
 
-const point fp = { 1, 2 };
-const point sp = { 3, 4 };
-const point tp = { 5, 6 };
-const point frp = { 7, 8 };
+const point fp = { 210, 4 };
+const point sp = { 0, 0 };
+const point tp = { 46, 22 };
+const point frp = { 0, 0};
 
 const point cal_first = { 10, 10 };
 const point cal_second = { 10, 0 };

@@ -11,15 +11,15 @@ extern "C" {
 const char *open_params = "r";
 const char *test_filename = "data/file.txt";
 
-const double answer = 32;
-const size_t point_counter = 7;
+const double answer = 948.97;
+const size_t point_counter = 8;
 
 TEST(COLLECTOR, CALCULATE_CORRECT_RESULT) {
     FILE *reader = create_file_reader(test_filename, open_params);
     EXPECT_TRUE(reader);
 
     double res = collect_size(reader, point_counter);
-    EXPECT_EQ(answer, res);
+    EXPECT_EQ(answer, int(res*100)/100.0);
 
     fclose(reader);
 }

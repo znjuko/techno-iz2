@@ -56,6 +56,10 @@ double collect_size(FILE* file, size_t size)
     for (size_t i = 0; i < process_count; ++i) {
         pids[i] = fork();
 
+        if (pids[i] == -1) {
+            return EXECUTION_FAILED;
+        }
+
         if (pids[i] != 0) {
             continue;
         }
