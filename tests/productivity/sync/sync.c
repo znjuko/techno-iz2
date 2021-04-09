@@ -22,10 +22,8 @@ int main()
             printf("failed to open file reader\n");
             return 1;
         }
-        printf("started!");
-        collect_size(reader, point_size);
-        printf("ended!");
 
+        collect_size(reader, point_size);
         fclose(reader);
     }
 
